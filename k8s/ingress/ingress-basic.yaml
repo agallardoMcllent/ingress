@@ -8,13 +8,6 @@ spec:
   rules:
     - http:
         paths:
-          - path: /api/auth
-            pathType: Prefix
-            backend:
-              service:
-                name: vsee
-                port:
-                  number: 80
           - path: /api/suscription
             pathType: Prefix
             backend:

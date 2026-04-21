@@ -20,6 +20,7 @@ env:
   INGRESS_FILE: k8s/ingress/ingress-basic.yaml
   INGRESS_NAME: hello-root-ingress
 
+
 jobs:
   deploy-ingress:
     runs-on: ubuntu-latest

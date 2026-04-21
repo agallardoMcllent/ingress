@@ -19,9 +19,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: vsee
+                name: suscription
                 port:
                   number: 80                      
-
-
-                  

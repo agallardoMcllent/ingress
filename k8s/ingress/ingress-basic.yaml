@@ -3,6 +3,8 @@ kind: Ingress
 metadata:
   name: app-main-ingress
   namespace: apps
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   ingressClassName: nginx
   rules:
@@ -22,4 +24,3 @@ spec:
                 name: suscription
                 port:
                   number: 80
-#d                  

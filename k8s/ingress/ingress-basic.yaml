@@ -10,6 +10,13 @@ spec:
   rules:
     - http:
         paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hello-app-svc
+                port:
+                  number: 80
           - path: /api/auth
             pathType: Prefix
             backend:
@@ -24,6 +31,3 @@ spec:
                 name: suscription
                 port:
                   number: 80
-
-
-#4                  

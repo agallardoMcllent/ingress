@@ -18,7 +18,7 @@ env:
   AKS_CLUSTER_NAME: ${{ secrets.AKS_CLUSTER_NAME }}
   NAMESPACE: apps
   INGRESS_FILE: k8s/ingress/ingress-basic.yaml
-  INGRESS_NAME: hello-root-ingress
+  INGRESS_NAME: app-main-ingress
 
 
 jobs:

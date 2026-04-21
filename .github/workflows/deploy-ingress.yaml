@@ -17,6 +17,8 @@ env:
   AKS_RESOURCE_GROUP: ${{ secrets.AKS_RESOURCE_GROUP }}
   AKS_CLUSTER_NAME: ${{ secrets.AKS_CLUSTER_NAME }}
   NAMESPACE: apps
+  INGRESS_FILE: k8s/ingress/ingress-basic.yaml
+  INGRESS_NAME: hello-root-ingress
 
 jobs:
   deploy-ingress:
@@ -43,11 +45,22 @@ jobs:
         run: |
           kubectl get namespace "${NAMESPACE}" || kubectl create namespace "${NAMESPACE}"
 
+      - name: Validate manifest exists
+        run: |
+          test -f "${INGRESS_FILE}"
+
       - name: Apply ingress manifest
         run: |
-          kubectl apply -f k8s/ingress/ingress-basic.yaml -n "${NAMESPACE}"
+          kubectl apply -f "${INGRESS_FILE}" -n "${NAMESPACE}"
 
-      - name: Validate ingress
+      - name: Verify ingress resource
         run: |
-          kubectl get ingress -n "${NAMESPACE}"
-          kubectl describe ingress ingress-basic -n "${NAMESPACE}"
+          kubectl get ingress "${INGRESS_NAME}" -n "${NAMESPACE}"
+
+      - name: Describe ingress
+        run: |
+          kubectl describe ingress "${INGRESS_NAME}" -n "${NAMESPACE}"
+
+      - name: Show all ingress resources
+        run: |
+          kubectl get ingress -n "${NAMESPACE}" -o wide
